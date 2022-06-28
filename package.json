@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/chrisjackson1/SQL-Employee-Tracker-DEMO#readme",
   "dependencies": {
-    "inquirer": "^7.0.0"
+    "express": "^4.18.1",
+    "inquirer": "^7.0.0",
+    "mysql2": "^2.3.3"
   }
 }
