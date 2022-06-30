@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 
 const db = require('./db/connection');
+const newdb = require('./db/index');
 
 function createOptions(){
 inquirer
@@ -51,13 +52,22 @@ inquirer
 }
 
 function viewRoles() {
-    db.findAllRoles()
+   newdb.findAllRoles().then(roles => {console.table(roles)})
 }
 function viewAllEmployee(){
     db.findAllEmployee()
 }
 function viewAllDepartments(){
-    db.findAllDepartments()
+    const sql = `SELECT id, name AS title FROM department`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+         return;
+      } 
+      console.table(rows)
+    }
+    )
 }
 function addARole(){
     db.findaRole()

@@ -1,6 +1,11 @@
+
+
 const connection = require("./connection");
 
 class DB {
+    constructor(){
+        this.connection = connection
+    }
   // find all roles and join them with departments to display the depart. roles
   findAllRoles() {
     return this.connection
@@ -47,3 +52,5 @@ class DB {
     );
 }
 }
+
+module.exports = new DB();
