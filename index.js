@@ -1,7 +1,7 @@
 //Imports package inquirer
 const inquirer = require('inquirer');
 
-const db = require('./server');
+const db = require('./db/connection');
 
 function createOptions(){
 inquirer
@@ -20,7 +20,7 @@ inquirer
     //   const departments = new Departments(answers.departments, answer.roles, answer.employees) 
     //     console.log(departments);
         //if(answers === )
-        let choice = res.options;
+        let choice = answers.options;
         switch (choice) {
             case "View All Roles":
                 // Call the view all roles function
@@ -28,9 +28,24 @@ inquirer
                 break;
             case "View All Employees":
             // Call the view all Employees function
-            viewAllEmploy();
+            viewAllEmployee();
+            break;
+            case "View All Departments":
+            viewAllDepartments();
+            break;
+            case "Add Role":
+            addARole();
+            break;
+            case "Add Department":
+            addADepartment();
+            break;
+            case "Add Employee":
+            addAEmployee();
             break;
 
+            case "Update Employee Role":
+            updateEmployeeRole();
+            break;
         }
     });
 }
@@ -38,7 +53,24 @@ inquirer
 function viewRoles() {
     db.findAllRoles()
 }
-
+function viewAllEmployee(){
+    db.findAllEmployee()
+}
+function viewAllDepartments(){
+    db.findAllDepartments()
+}
+function addARole(){
+    db.findaRole()
+}
+function addADepartment(){
+    db.findaDepartment()
+}
+function addAEmployee(){
+    db.findaEmployee()
+}
+function updateEmployeeRole(){
+    db.updateRole()
+}
 
 
 createOptions();
