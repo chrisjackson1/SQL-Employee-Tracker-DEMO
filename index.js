@@ -52,10 +52,11 @@ inquirer
 }
 
 function viewRoles() {
-   newdb.findAllRoles().then(roles => {console.table(roles)})
+  newdb.findAllRoles().then(roles => {console.table(roles)})
+  
 }
 function viewAllEmployee(){
-    db.findAllEmployee()
+  
 }
 function viewAllDepartments(){
     const sql = `SELECT id, name AS title FROM department`;
@@ -70,7 +71,15 @@ function viewAllDepartments(){
     )
 }
 function addARole(){
-    db.findaRole()
+    const sql = "SELECT role.id  FROM role LEFT JOIN department on role.department_id = department.id;";
+    db.query(sql, (err, rows) => {
+        if (err) {
+          console.error(err)
+           return;
+        } 
+        console.table(rows)
+      }
+      )
 }
 function addADepartment(){
     db.findaDepartment()
