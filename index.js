@@ -52,10 +52,29 @@ inquirer
 }
 
 function viewRoles() {
-  newdb.findAllRoles().then(roles => {console.table(roles)})
+    const sql = `SELECT * FROM role`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+         return;
+      } 
+      console.table(rows)
+    }
+    )
   
 }
 function viewAllEmployee(){
+    const sql = `SELECT * FROM employee`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+         return;
+      } 
+      console.table(rows)
+    }
+    )
   
 }
 function viewAllDepartments(){
@@ -71,7 +90,7 @@ function viewAllDepartments(){
     )
 }
 function addARole(){
-    const sql = "SELECT role.id  FROM role LEFT JOIN department on role.department_id = department.id;";
+    const sql = "SELECT  FROM role";
     db.query(sql, (err, rows) => {
         if (err) {
           console.error(err)
@@ -82,13 +101,40 @@ function addARole(){
       )
 }
 function addADepartment(){
-    db.findaDepartment()
+    const sql = `SELECT id, department_id FROM employee`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+         return;
+      } 
+      console.table(rows)
+    }
+    )
 }
 function addAEmployee(){
-    db.findaEmployee()
+    const sql = `SELECT first_name, last_name, role_id FROM employee`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+         return;
+      } 
+      console.table(rows)
+    }
+    )
 }
 function updateEmployeeRole(){
-    db.updateRole()
+    const sql = `SELECT first_name, last_name, role_id, manager_id FROM employee`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+         return;
+      } 
+      console.table(rows)
+    }
+    )
 }
 
 
