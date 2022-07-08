@@ -83,7 +83,7 @@ function viewRoles() {
 }
 function viewAllEmployee() {
   const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id`;
-
+  
   db.query(sql, (err, rows) => {
     if (err) {
       console.error(err);
@@ -106,15 +106,27 @@ function viewAllDepartments() {
   });
 }
 function addARole() {
-  const sql = `INSERT INTO role, first_name, last_name, salary, department_id ` ;
-  db.query(sql, (err, rows) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log(`\n\n\n`)
-    console.table(rows);
-  });
+  //const sql = `INSERT INTO role, first_name, last_name, salary, department_id `
+   ;
+   inquirer
+   .prompt([
+     {
+       type: "input",
+       name: "Role",
+       message: "Add the roles information "
+     }])
+     .then(function(answers){
+       console.log(answers)
+     })
+
+  // db.query(sql, (err, rows) => {
+  //   if (err) {
+  //     console.error(err);
+  //     return;
+  //   }
+  //   console.log(`\n\n\n`)
+  //   console.table(rows);
+  // });
 }
 function addADepartment() {
   const sql = `SELECT id, department_id FROM employee`;
