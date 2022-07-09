@@ -45,7 +45,7 @@ class DB {
       .query("SELECT employee.id  FROM employee LEFT JOIN department on role.department_id = department.id;"
       );
   }
-  updateRole(){
+  updateEmployeeRole(){
     return this.connection
     .promise()
     .query("SELECT role.id  FROM role LEFT JOIN department on role.department_id = department.id;"
