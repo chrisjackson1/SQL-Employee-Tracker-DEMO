@@ -4,6 +4,36 @@ const inquirer = require("inquirer");
 const db = require("./db/connection");
 const newdb = require("./db/index");
 
+function updateEmployeeRole() {
+  // const sql = `SELECT first_name, last_name, role_id, manager_id FROM employee`;
+  inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "update",
+      message: "Select which employee role to update",
+  },
+  {
+    type: "input",
+    name: "new Role",
+    message: "Update their new role",
+ },
+])
+.then(function (answers) {
+  console.log(answers);
+  const sql = `UPDATE employee SET ?  `;
+  db.query(sql, answers, (err, rows) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  //   console.log(`\n\n\n`);
+  //  console.table(rows);
+  });
+  createOptions();
+});
+ }
+
 function createOptions() {
   inquirer
     .prompt([
@@ -203,34 +233,5 @@ function addAEmployee() {
     createOptions();
   });
 
-function updateEmployeeRole() {
-  // const sql = `SELECT first_name, last_name, role_id, manager_id FROM employee`;
-  inquirer
-  .prompt([
-    {
-      type: "input",
-      name: "update",
-      message: "Select which employee role to update",
-  },
-  {
-    type: "input",
-    name: "new Role",
-    message: "Update their new role",
- },
-])
-.then(function (answers) {
-  console.log(answers);
-  const sql = `UPDATE employee SET ?  `;
-  db.query(sql, answers, (err, rows) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  //   console.log(`\n\n\n`);
-  //  console.table(rows);
-  });
-  createOptions();
-});
-}
 }
 createOptions();
